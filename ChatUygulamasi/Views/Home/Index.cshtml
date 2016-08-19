@@ -1,0 +1,53 @@
+﻿@{Layout = null;}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <script src="~/Scripts/jquery-1.6.4.min.js"></script>
+    <script src="~/Scripts/jquery.signalR-2.1.0.min.js"></script>
+    <script src="~/SignalR/Hubs"></script>
+    <script>
+        //var x = 0;
+        $(function () {
+
+            var chat = $.connection.chatHub;
+            var message = document.getElementById('btnSendMessage').innerHTML;
+
+            chat.client.sendMessage = function (message) {
+
+                document.getElementById('btnSendMessage').innerHTML = message;
+                alert(message);
+
+                //if (message = "Emrah") {
+                //    document.getElementById('btnSendMessage').innerHTML = "Senol";
+
+                //    x = 1;
+                //    alert(x);
+                //} else if (message = "Senol" && x == 0) {
+
+                //    document.getElementById('btnSendMessage').innerHTML = "Caglar";
+                //    x = 0;
+                //    alert(x);
+                //}
+                //x = 0;
+                //alert(x);
+            };
+
+            $.connection.hub.start().done(function () {
+                $('#btnSendMessage').click(function () {
+
+                    chat.server.send(message);
+
+                });
+            });
+        });
+
+    </script>
+</head>
+<body>
+    <div>
+        <button id="btnSendMessage">Emrah</button>
+    </div>
+</body>
+</html>
