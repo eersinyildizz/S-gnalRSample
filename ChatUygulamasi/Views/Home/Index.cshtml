@@ -10,14 +10,14 @@
     <script>
         //var x = 0;
         $(function () {
-
+            $('#btnSendMessage').click(function () {
             var chat = $.connection.chatHub;
             var message = document.getElementById('btnSendMessage').innerHTML;
-
+            alert(message);
             chat.client.sendMessage = function (message) {
 
                 document.getElementById('btnSendMessage').innerHTML = message;
-                alert(message);
+                
 
                 //if (message = "Emrah") {
                 //    document.getElementById('btnSendMessage').innerHTML = "Senol";
@@ -35,7 +35,7 @@
             };
 
             $.connection.hub.start().done(function () {
-                $('#btnSendMessage').click(function () {
+                
 
                     chat.server.send(message);
 

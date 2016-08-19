@@ -21,6 +21,11 @@ namespace ChatUygulamasi
             {
                 message = "Ali";
                 Clients.All.sendMessage(message);
+                x = true;
+            }
+            if(message == "Ali" && x == false) {
+                message = "Emrah";
+                Clients.All.sendMessage(message);
             }
         }
     }
